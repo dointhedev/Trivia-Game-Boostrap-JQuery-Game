@@ -1,1 +1,1 @@
-# Star-Wars-Responsive-JQuery-Game
+# Trivia-Game-Boostrap-JQuery-Game
