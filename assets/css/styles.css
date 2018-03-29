@@ -19,6 +19,9 @@ body{
     background: #214769 url("../img/bg1.jpg") no-repeat;
    background-size: cover;
 }
+audio {
+    width: 100%;
+}
 
 /*----------------------------------------------------------------
 1. SITE COLORS

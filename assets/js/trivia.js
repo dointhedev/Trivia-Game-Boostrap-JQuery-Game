@@ -1,5 +1,6 @@
 /*::::::DOM CACHE::::::*/
 var gameCnt = $("#gameCont");
+var audio = document.getElementById('bg_tr');
 
 /*::::::Global Variable::::::*/
 var counter = 30;
@@ -25,7 +26,9 @@ var clock;
 var totalCorrect = 0;
 var totalIncorrect = 0;
 var totalUnAnswered = 0;
-var clickSound = new Audio("assets/audio/sound/button-click.mp3");
+var clickSound = new Audio("assets/audio/button-click.mp3");
+var yaySound = new Audio("assets/audio/yay.mp3");
+var noSound = new Audio("assets/audio/no.mp3");
 console.log(clickSound);
 
 /*
@@ -42,11 +45,11 @@ console.log(clickSound);
 // document load gameSetup();
 $(document).ready(function() {
     // Create a function that creates the start button and initial screen
-    
     function gameSetup() {
-        gameCnt.empty();
+		gameCnt.empty();
         gameCnt.html("<h1 class='title-triv pt-3'>California Trivia Game</h1>" +
-        " <button class='start btn btn-outline-light my-5'>Start Game</button>");
+		" <button class='start btn btn-outline-light my-5'>Start Game</button>");
+		audio.play();
     }
 
     gameSetup();
@@ -67,7 +70,8 @@ $("body").on("click", ".answer", function(event){
     console.log(selectedAnswer);
 	if(selectedAnswer === correctAnswers[questionCounter]) {
 		//alert("correct");
-        console.log("Correct");
+		console.log("Correct");
+		
 		clearInterval(clock);
 		userCorrect();
 	}
@@ -87,9 +91,9 @@ $("body").on("click", ".reset", function(event){
 
 
 });
-
-
-
+function resume() {
+	audio.play();
+}
 function pause() {
 	if (questionCounter < 7) {
 	questionCounter++;
@@ -116,26 +120,39 @@ function timer() {
 	}
 }
 function userCorrect() {
-    totalCorrect++;
+	totalCorrect++;
+	audio.pause();
+	yaySound.play();
+	setTimeout(resume, 5000);  
+	$("#times").html(" ");
+	$("#gameAnswer").html(" ");
+	$("#gameAnswer").html("<div class='d-flex justify-content-center'> <iframe src='https://giphy.com/embed/l0MYFacIZsZTaYx9K' width='480' height='258' frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div>");
+	$("#text-area").text("You Guessed It Right :) " + correctAnswers[questionCounter]);
     console.log(totalCorrect);
 	gameHTML = "<div class='py-3'><h4>Time Remaining: <small class='blueClr timer'>" + counter + "</small></h4>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
 	$(".mainArea").html(gameHTML);
-	setTimeout(pause, 1000);  
+	setTimeout(pause, 5000);  
+	
 }
 
 function userIncorrect() {
-    totalIncorrect++;
+	totalIncorrect++;
+	audio.pause();
+	noSound.play();
+	setTimeout(resume, 5000); 
+	$("#times").html(" ");
+	$("#gameAnswer").html(" ");
+	$("#gameAnswer").html("<div class='d-flex justify-content-center'> <iframe src='https://giphy.com/embed/vPN3zK9dNL236' width='480' height='376' frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div>");
+	$("#text-area").html("<div>You Guessed It Wrong :(</div> " + "<div>The right answer was: " + correctAnswers[questionCounter] + "</div>");
     console.log(totalIncorrect);
 	gameHTML = "<div class='py-3'><h4>Time Remaining: <small class='blueClr timer'>" + counter + "</small></h4>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
 	$(".mainArea").html(gameHTML);
-	setTimeout(pause, 1000); 
+	setTimeout(pause, 5000); 
 }
-
-
 
 function generateHTML(){
     gameHTML = "<h1 class='title-triv'>California Trivia Game</h1>" +
-    "<div class='py-3'><h4>Time Remaining: <small class='blueClr timer'>30</small></h4>" +
+    "<div class='py-3'><h4 id='times'>Time Remaining: <small class='blueClr timer'>30</small></h4>" +
     "<p id='text-area' class='py-2'>" + questions[questionCounter] + "</p>" +
     " <div id='gameAnswer' class='pb-3 d-flex justify-content-left flex-column'>" +
     " <button type='button' class='btn btn-outline-secondary mt-1 mb-3 d-flex justify-content-left w-100 answer'>" + answer[questionCounter][0] + "</button>" +
@@ -150,6 +167,8 @@ function finalScreen() {
 	gameCnt.html(gameHTML);
 }
 function resetGame() {
+	audio.currentTime = 0;
+    audio.play();
 	questionCounter = 0;
 	totalCorrect = 0;
 	totalIncorrect = 0;
@@ -159,5 +178,9 @@ function resetGame() {
 }
 
 function timeOut() {
+	audio.pause();
+	noSound.play();
+	gameHTML =  "<h3 class='py-4'>Your TIME RAN OUT :(((((" + "</h3>" + "<p class='reset-container'><a class='reset btn btn-outline-light mt-4 mb-3' href='#' role='button'>Reset The Quiz!</a></p>";
+	gameCnt.html(gameHTML);
     console.log("Timeout");
     }
