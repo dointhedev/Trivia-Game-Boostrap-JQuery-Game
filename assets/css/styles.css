@@ -7,7 +7,7 @@
 1. GLOBAL 
 2. SITE COLORS
 3. TYPOGRAPHY
-4. ELEMENTS
+4. MOBILE
 
 -------------------------------------------------------------------*/
 
@@ -15,67 +15,73 @@
 1. GLOBAL 
 -------------------------------------------------------------------*/
 
-body{
+body {
     background: #214769 url("../img/bg1.jpg") no-repeat;
-   background-size: cover;
+    background-size: cover;
 }
+
 audio {
     width: 100%;
 }
 
 /*----------------------------------------------------------------
-1. SITE COLORS
+2. SITE COLORS
 -------------------------------------------------------------------*/
+
 .blueBg {
-    background: #214769b3; 
+    background: #214769b3;
 }
-.blueClr{
+
+.blueClr {
     color: #82c4ff !important;
 }
 
-.blkBrdr{
+.blkBrdr {
     border: 2px solid black;
 }
 
+button:hover {
+    color: #000 !important;
+}
+
+.btn-outline-secondary {
+    color: #7dc2ff !important;
+    border-color: #7dc2ff !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #7dc2ff !important;
+    color: #000 !important;
+}
+
 /*----------------------------------------------------------------
-1. TYPOGRAPHY
+3. TYPOGRAPHY
 -------------------------------------------------------------------*/
+
 .title-triv {
     font-size: 4rem;
 }
+
 p {
     font-size: 1.4rem;
 }
 
 /*----------------------------------------------------------------
-1. ELEMENTS
--------------------------------------------------------------------*/
-button:hover{
-    color: #000 !important;
-}
-.btn-outline-secondary {
-    color: #7dc2ff !important;
-    border-color: #7dc2ff !important;;
-}
-.btn-outline-secondary:hover {
-    background-color: #7dc2ff !important;
-    color: #000 !important;;
-}
-
-/*----------------------------------------------------------------
-1. MOBILE
+4. MOBILE
 -------------------------------------------------------------------*/
 
 /* Medium devices (tablets, less than 700px) */
 @media (max-width: 700px) {
-    body{
+    body {
         background: #214769 url("../img/bg2.jpg") no-repeat;
         background-size: cover;
 
     }
+
     .title-triv {
         font-size: 2rem;
     }
+
     p {
         font-size: .8rem;
     }
