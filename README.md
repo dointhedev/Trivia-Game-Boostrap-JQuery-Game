@@ -22,7 +22,7 @@ To view demo click on this link: ([Demo Link](https://dointhedev.github.io/Trivi
 1. Once the game starts you will be provided with a question and have 4 answers to choose from. 
 1. Guess right and something will happen.
 1. Guess wrong and something esle will happen.
-1. I believe they are 10 questions in total. 
+1. I believe they are 8 questions in total. 
 
 Can you event wait for it!
 #### YAY!!!!
