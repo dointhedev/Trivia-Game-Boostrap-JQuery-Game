@@ -24,5 +24,5 @@ To view demo click on this link: ([Demo Link](https://dointhedev.github.io/Trivi
 1. Guess wrong and something esle will happen.
 1. I believe they are 8 questions in total. 
 
-Can you event wait for it!
+Can you even wait for it!
 #### YAY!!!!
